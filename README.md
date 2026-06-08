@@ -75,6 +75,11 @@ source .venv/bin/activate
 ```bash
 uv add langchain langchain-core langgraph langchain-ollama chromadb sentence-transformers python-dotenv pypdf fastapi uvicorn
 ```
+### Document Loading
+
+```bash
+uv add langchain-community pypdf beautifulsoup4
+```
 
 Optional Packages:
 
