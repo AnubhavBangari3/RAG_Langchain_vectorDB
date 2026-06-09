@@ -13,6 +13,7 @@ dependencies = [
     "langchain-community>=0.4.2",
     "langchain-core>=1.4.1",
     "langchain-ollama>=1.1.0",
+    "langchain-text-splitters>=1.1.2",
     "langgraph>=1.2.4",
     "pypdf>=6.13.1",
     "python-dotenv>=1.2.2",

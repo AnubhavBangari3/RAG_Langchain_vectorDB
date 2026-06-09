@@ -93,6 +93,7 @@ uv add langchain-ollama
 ```bash
 uv add chromadb
 uv add langchain-chroma
+uv add langchain-text-splitters
 ```
 
 ## Embeddings
