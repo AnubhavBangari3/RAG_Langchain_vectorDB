@@ -4,20 +4,24 @@ A production-ready Retrieval-Augmented Generation (RAG) learning project using l
 
 ---
 
-# Tech Stack
+# Recommended Stack
 
-| Component       | Technology     |
-| --------------- | -------------- |
-| LLM             | Ollama + Qwen  |
-| Embeddings      | BGE Embeddings |
-| Vector Database | ChromaDB       |
-| Framework       | LangChain      |
-| Agent Framework | LangGraph      |
-| Backend API     | FastAPI        |
-| Observability   | Langfuse       |
-| PDF Loading     | PyPDF          |
-| Reranking       | BGE Reranker   |
-| Deployment      | Docker         |
+| Component        | Course Uses       | Free Alternative        | My Recommendation                          | Install                                 |
+| ---------------- | ----------------- | ----------------------- | ------------------------------------------ | --------------------------------------- |
+| LLM              | OpenAI GPT        | Ollama local models     | qwen3:8b                                   | langchain-ollama                        |
+| Embeddings       | OpenAI Embeddings | Ollama / BGE / E5       | Start with nomic-embed-text; later use BGE | langchain-ollama, sentence-transformers |
+| Vector DB        | Managed vector DB | Chroma / PGVector       | Start with Chroma                          | langchain-chroma, chromadb              |
+| Document Loaders | LangChain loaders | Same                    | Use community loaders                      | langchain-community                     |
+| PDF Loading      | OpenAI loaders    | PyPDF                   | Keep simple                                | pypdf                                   |
+| Web Loading      | WebBaseLoader     | BeautifulSoup           | Keep                                       | beautifulsoup4                          |
+| Observability    | LangSmith         | Langfuse                | Use later                                  | langfuse                                |
+| Agent Framework  | LangGraph         | Same                    | Keep LangGraph                             | langgraph                               |
+| Orchestration    | LangChain         | Same                    | Keep                                       | langchain, langchain-core               |
+| Reranking        | OpenAI rerank     | BGE reranker            | Add later                                  | sentence-transformers                   |
+| OCR              | Paid OCR APIs     | Tesseract               | Use only if scanned PDFs                   | pytesseract                             |
+| API Layer        | FastAPI           | FastAPI                 | Keep                                       | fastapi, uvicorn                        |
+| Deployment       | Paid AI Infra     | Docker + Railway/Render | Docker first                               | Docker                                  |
+| Hybrid Search    | Paid Search APIs  | BM25                    | Use later                                  | rank-bm25                               |
 
 ---
 
@@ -70,18 +74,46 @@ source .venv/bin/activate
 
 ---
 
-## 5. Install Dependencies
+# Install Dependencies
+
+## Core Framework
 
 ```bash
-uv add langchain langchain-core langgraph langchain-ollama chromadb sentence-transformers python-dotenv pypdf fastapi uvicorn
+uv add langchain langchain-core langgraph
 ```
-### Document Loading
+
+## Ollama Integration
+
+```bash
+uv add langchain-ollama
+```
+
+## Chroma Vector Database
+
+```bash
+uv add chromadb
+uv add langchain-chroma
+```
+
+## Embeddings
+
+```bash
+uv add sentence-transformers
+```
+
+## Document Loading
 
 ```bash
 uv add langchain-community pypdf beautifulsoup4
 ```
 
-Optional Packages:
+## API + Utilities
+
+```bash
+uv add python-dotenv fastapi uvicorn
+```
+
+## Optional Packages
 
 ```bash
 uv add langfuse rank-bm25 pytesseract unstructured
@@ -91,7 +123,7 @@ uv add langfuse rank-bm25 pytesseract unstructured
 
 # Install Ollama
 
-Download and install:
+Download:
 
 https://ollama.com/download
 
@@ -105,19 +137,19 @@ ollama --version
 
 # Download Models
 
-LLM:
+## LLM
 
 ```bash
 ollama pull qwen3:8b
 ```
 
-Embeddings:
+## Embeddings
 
 ```bash
 ollama pull nomic-embed-text
 ```
 
-Optional reasoning model:
+## Optional Reasoning Model
 
 ```bash
 ollama pull deepseek-r1:8b
@@ -146,6 +178,30 @@ ollama list
 ```
 
 
+
+# Learning Flow
+
+```text
+Documents
+    ↓
+Document Loaders
+    ↓
+Document Objects
+    ↓
+Chunking
+    ↓
+Embeddings
+    ↓
+ChromaDB
+    ↓
+Similarity Search
+    ↓
+RAG
+    ↓
+LangGraph Agents
+```
+
+---
 
 # Goal
 
